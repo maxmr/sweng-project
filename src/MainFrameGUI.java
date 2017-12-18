@@ -5,7 +5,7 @@ import java.awt.*;
 public class MainFrameGUI extends JFrame {
 	
 	private Container C;
-	private JButton[] MainButtons;
+	public JButton[] MainButtons;
 	private static String MainTitle;
 	private static String version = "v0.1";
 	private JPanel MainPanel;
@@ -21,6 +21,7 @@ public class MainFrameGUI extends JFrame {
 		
 		for (int i=0; i < MainButtons.length; i++) {
 			MainButtons[i].setAlignmentX(Component.CENTER_ALIGNMENT);
+			MainButtons[i].addActionListener(new ButtonListMain(this));
 		}
 		
 		MainPanel =  new JPanel(new GridLayout(MainButtons.length, 0));

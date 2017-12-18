@@ -84,7 +84,7 @@ public class TerminalGUI extends JFrame {
 		C.add(MainPanel);
 		setSize(1200,800);
 		setTitle(TerminalTitle);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		
 		
