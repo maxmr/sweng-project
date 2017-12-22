@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class MainFrameGUI extends JFrame {
 	
-	ArrayList<List> myList = new ArrayList<>();
+	ArrayList<String[]> data; 
 	
 	//List 0: QR-Code
 	//List 1: Name
@@ -18,7 +18,7 @@ public class MainFrameGUI extends JFrame {
 	//List 5: Fluggesellschaft
 	//List 6: Abflugzeit
 	//List 7: Abflugdatum
-	//List 8: Frühester CheckIN
+	//List 8: Frühester CheckIN t-time
 	//List 9: Maximalgewicht pro Koffer
 	//List 10: Maximale KofferAnzahl
 	
@@ -31,6 +31,12 @@ public class MainFrameGUI extends JFrame {
 	
 	public MainFrameGUI(){
 		C = getContentPane();
+		data = new ArrayList<String[]>();
+		
+		for (int i=1; i<4;i++) {
+			create_example_data(i);
+		}
+		
 		MainTitle = "Flughafen CheckIn " + version;
 		MainButtons = new JButton[3];
 		
@@ -63,6 +69,27 @@ public class MainFrameGUI extends JFrame {
 	public void  increase_TerminalCnt() {
 		TerminalCnt ++;
 	}
+	
+	private void create_example_data(int nr) {
+		switch(nr){
+			case 1:
+				String[] temp = {"12345678abcdefg","Max", "Mustermann","F517","0.0","Muster-air","17:30:00","30.12.2017","12:00:00","20.0","3"};
+				data.add(temp);
+				break;
+			case 2:
+				String[] temp2 = {"23456789bcdefgh","Anna", "Mustermann","F517","0.0","Muster-air","17:30:00","30.12.2017","12:00:00","20.0","3"};
+				data.add(temp2);
+				break;
+			case 3:		
+				String[] temp3 = {"abcd1234fghc","Tom", "Musterstudent","None","0.0","Muster-air","14:30:00","31.12.2017","06:00:00","15.0","2"};
+				data.add(temp3);
+				break;
+		}
+		
+		
+		
+	}
+	
 	
 	public void decrease_TerminalCnt() {
 		if (TerminalCnt > 0)

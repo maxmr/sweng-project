@@ -13,6 +13,9 @@ public class ButtonListMain implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == frame.MainButtons[0]) {
 			System.out.println("Button Setting pressed");
+			String[] temp = frame.data.get(0);
+			for (int i=0; i < temp.length; i++)
+			System.out.println(temp[i]);
 		}
 		else if(arg0.getSource() == frame.MainButtons[1]) {
 			new TerminalGUI(frame.ret_TerminalCnt(), frame).setVisible(true);
