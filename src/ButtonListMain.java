@@ -15,7 +15,8 @@ public class ButtonListMain implements ActionListener {
 			System.out.println("Button Setting pressed");
 		}
 		else if(arg0.getSource() == frame.MainButtons[1]) {
-			new TerminalGUI().setVisible(true);
+			new TerminalGUI(frame.ret_TerminalCnt(), frame).setVisible(true);
+			frame.increase_TerminalCnt();
 		}
 		else if(arg0.getSource() == frame.MainButtons[2]) {
 			System.exit(0);

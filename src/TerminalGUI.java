@@ -1,13 +1,18 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.border.*;
 
 public class TerminalGUI extends JFrame {
 
 	private Container C;
 	private String TerminalTitle;
-	int terminalnr = 0;
+	int ID;
+	MainFrameGUI Mainframe;
 	
 	private JPanel MainPanel;
 	private JPanel upper_panel;
@@ -20,16 +25,16 @@ public class TerminalGUI extends JFrame {
 	private JButton back_button;
 	
 	
-	public TerminalGUI() {
+	public TerminalGUI(int TerminalID, MainFrameGUI f) {
+		Mainframe = f;
+		ID = TerminalID;
 		C = getContentPane();
-		TerminalTitle = "Terminal " + terminalnr;
-		
-		lang_buttons = new JButton[2];
-		
-		ImageIcon icon_eng = new ImageIcon(new ImageIcon("src/eng.jpg").getImage().getScaledInstance(150, 100, Image.SCALE_DEFAULT));
+		TerminalTitle = "Terminal " + ID;
 
-		lang_buttons[0] = new JButton(icon_eng);
-		
+		// ------- upper Panel ---------- //
+		lang_buttons = new JButton[2];		
+		ImageIcon icon_eng = new ImageIcon(new ImageIcon("src/eng.jpg").getImage().getScaledInstance(150, 100, Image.SCALE_DEFAULT));
+		lang_buttons[0] = new JButton(icon_eng);		
 		ImageIcon icon_ger = new ImageIcon(new ImageIcon("src/german.jpg").getImage().getScaledInstance(150, 100, Image.SCALE_DEFAULT));
 		lang_buttons[1] = new JButton(icon_ger);
 		
@@ -37,7 +42,7 @@ public class TerminalGUI extends JFrame {
 		
 		upper_panel = new JPanel();
 		upper_panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-		//upper_panel.setAlignmentX(Component.RIGHT_ALIGNMENT);
+
 		
 		for (int i=0; i < lang_buttons.length; i++) {
 			lang_buttons[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
@@ -50,20 +55,22 @@ public class TerminalGUI extends JFrame {
 		
 		upper_panel.setPreferredSize(new Dimension(1200, 120));
 		upper_panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		 
+		
+		
 		Actionpanel = new JPanel[1];
 		Actionpanel[0] = new JPanel();
 		JLabel label1 = new JLabel("Welcome");
 		Actionpanel[0].add(label1);
 		
+		// ------- Center Panel ---------- //
 		center_panel = new JPanel();
 		center_panel.add(Actionpanel[0],BorderLayout.CENTER);
 		center_panel.setBorder(BorderFactory.createEtchedBorder());
 		center_panel.setPreferredSize(new Dimension(1200, 500));
 		
-		
+		// ------- Bottom Panel ---------- //
 		bottom_panel = new JPanel(new BorderLayout(20, 10));
-		
+
 		next_button = new JButton("Next");
 		next_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		next_button.setPreferredSize(new Dimension(300, 100));
@@ -82,19 +89,40 @@ public class TerminalGUI extends JFrame {
 		MainPanel.add(bottom_panel, BorderLayout.SOUTH);
 		
 		C.add(MainPanel);
+		addWindowListener(new ClosingListener());
 		setSize(1200,800);
 		setTitle(TerminalTitle);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-		
-		
-		
-		
+		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);		
 	}
 	
+	private JPanel create_WelcomeScreen() {
+		JPanel pan = new JPanel();
+		pan.setPreferredSize(new Dimension(1200,500));
+		
+		return pan;
+	}
+	
+	private JPanel create_UnkownScreen() {
+		JPanel pan = new JPanel();
+		
+		return pan;
+	}
+
+	// WindowListener-Klasse als innere Klasse
+	public class ClosingListener extends WindowAdapter	{
+		
+		public void windowClosing(WindowEvent e){ 
+			Mainframe.decrease_TerminalCnt();
+			e.getWindow().dispose();
+		}
+	}
+	
+	
 	public static void main(String[] args) {
-		new TerminalGUI().setVisible(true);
+	//	new TerminalGUI(0).setVisible(true);
 
 	}
+
+
 	
 }
