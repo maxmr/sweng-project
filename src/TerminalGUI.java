@@ -230,7 +230,7 @@ public class TerminalGUI extends JFrame {
 	private JPanel create_AcceptedScreen() {
 		JPanel pan = new JPanel();
 		pan.setPreferredSize(new Dimension(1200,500));
-		JLabel label1 = new JLabel("Welcome");
+		JLabel label1 = new JLabel("passt");
 		pan.add(label1);
 		
 		return pan;
@@ -239,7 +239,7 @@ public class TerminalGUI extends JFrame {
 	private JPanel create_toearlyScreen() {
 		JPanel pan = new JPanel();
 		pan.setPreferredSize(new Dimension(1200,500));
-		JLabel label1 = new JLabel("Welcome");
+		JLabel label1 = new JLabel("zu früh");
 		pan.add(label1);
 		
 		return pan;
@@ -248,7 +248,7 @@ public class TerminalGUI extends JFrame {
 	private JPanel create_tolateScreen() {
 		JPanel pan = new JPanel();
 		pan.setPreferredSize(new Dimension(1200,500));
-		JLabel label1 = new JLabel("Welcome");
+		JLabel label1 = new JLabel("zu spät");
 		pan.add(label1);
 		
 		return pan;
@@ -336,9 +336,12 @@ public class TerminalGUI extends JFrame {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 		flight = LocalDateTime.parse(temp, formatter);
 		
-		if(flight.isAfter(now)) {
+		if(now.isAfter(flight)) {
 			ret = true;
 		}
+		
+		System.out.println(flight);
+		System.out.println(now);
 		
 		return ret;
 	}
