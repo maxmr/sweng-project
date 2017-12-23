@@ -73,15 +73,15 @@ public class MainFrameGUI extends JFrame {
 	private void create_example_data(int nr) {
 		switch(nr){
 			case 1:
-				String[] temp = {"12345678abcdefg","Max", "Mustermann","F517","0.0","Muster-air","17:30:00","30.12.2017","12:00:00","20.0","3"};
+				String[] temp = {"12345678abcdefg","Max", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3"};
 				data.add(temp);
 				break;
 			case 2:
-				String[] temp2 = {"23456789bcdefgh","Anna", "Mustermann","F517","0.0","Muster-air","17:30:00","30.12.2017","12:00:00","20.0","3"};
+				String[] temp2 = {"23456789bcdefgh","Anna", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3"};
 				data.add(temp2);
 				break;
 			case 3:		
-				String[] temp3 = {"abcd1234fghc","Tom", "Musterstudent","None","0.0","Muster-air","14:30:00","31.12.2017","06:00:00","15.0","2"};
+				String[] temp3 = {"abcd1234fghc","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.12.2017","4","15.0","2"};
 				data.add(temp3);
 				break;
 		}
