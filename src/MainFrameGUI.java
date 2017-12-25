@@ -106,7 +106,7 @@ public class MainFrameGUI extends JFrame {
 				//early
 				String[] temp3 = {"early","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.12.2017","4","15.0","2","F003"};
 				data.add(temp3);
-				break;
+				break; 
 			case 4:
 				//late
 				String[] temp4 = {"late","Tom", "Musterstudent","None","0.0","Muster-air","14:30","23.12.2017","4","15.0","2","F978"};
