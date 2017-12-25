@@ -3,19 +3,10 @@ import java.awt.event.ActionListener;
 
 
 
-
-
-
-
-
-
-
-
-
 public class ButtonListTerminal implements ActionListener {
 
 	TerminalGUI frame;
-	TerminalGUI.Language lang;
+	TerminalGUI.Language lang = TerminalGUI.Language.eng;
 	QRScanner scan;
 	TerminalGUI.State state;
 	TerminalGUI.State nextstate;
@@ -35,10 +26,13 @@ public class ButtonListTerminal implements ActionListener {
 		mainframe = m;
 	}
 	
-	@SuppressWarnings("static-access")
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if (arg0.getSource() == frame.back_button) {
+		if (arg0.getSource() == frame.exit_button) {
+			frame.dispose();
+			mainframe.del_terminalref(frame);
+			new TerminalGUI(mainframe.ret_TerminalCnt(), mainframe).setVisible(true);
 
 		}
 		else if(arg0.getSource() == frame.next_button) {
@@ -97,12 +91,14 @@ public class ButtonListTerminal implements ActionListener {
 		}
 		else if(arg0.getSource() == frame.scanqr) {
 			scan.ScanQRCode();
+			frame.update_panels();
 		}
 		else if (arg0.getSource() == frame.Exit_unkown) {
-			mainframe.decrease_TerminalCnt();
+			//mainframe.decrease_TerminalCnt();
 			frame.dispose();
 			new TerminalGUI(mainframe.ret_TerminalCnt(), mainframe).setVisible(true);
 		}
+
 
 
 	}

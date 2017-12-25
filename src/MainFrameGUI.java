@@ -21,6 +21,7 @@ public class MainFrameGUI extends JFrame {
 	//List 8: Frühester CheckIN t-time
 	//List 9: Maximalgewicht pro Koffer
 	//List 10: Maximale KofferAnzahl
+	//1List 11: Flugnr
 	
 	private Container C;
 	public JButton[] MainButtons;
@@ -29,11 +30,14 @@ public class MainFrameGUI extends JFrame {
 	private JPanel MainPanel;
 	private int TerminalCnt = 0;
 	
+	ArrayList<TerminalGUI> terminallist;
+	
 	public MainFrameGUI(){
 		C = getContentPane();
 		data = new ArrayList<String[]>();
+		terminallist = new ArrayList<TerminalGUI>();
 		
-		for (int i=1; i<4;i++) {
+		for (int i=1; i<7;i++) {
 			create_example_data(i);
 		}
 		
@@ -70,19 +74,48 @@ public class MainFrameGUI extends JFrame {
 		TerminalCnt ++;
 	}
 	
+	public void add_terminalref( TerminalGUI t) {
+		terminallist.add(t);
+		
+	}
+	
+	public void del_terminalref( TerminalGUI t) {
+		terminallist.remove(t);
+		update_terminals();
+	}
+	
+	public void update_terminals() {
+		for (int i=0; i < terminallist.size(); i++) {
+			TerminalGUI temp = terminallist.get(i);
+			temp.ID = i;
+			temp.update_from_global();
+		}
+	}
+	
 	private void create_example_data(int nr) {
 		switch(nr){
 			case 1:
-				String[] temp = {"12345678abcdefg","Max", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3"};
+				String[] temp = {"12345678abcdefg","Max", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3","F001"};
 				data.add(temp);
 				break;
 			case 2:
-				String[] temp2 = {"23456789bcdefgh","Anna", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3"};
+				String[] temp2 = {"23456789bcdefgh","Anna", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3","F001"};
 				data.add(temp2);
 				break;
-			case 3:		
-				String[] temp3 = {"abcd1234fghc","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.12.2017","4","15.0","2"};
+			case 3:
+				//early
+				String[] temp3 = {"early","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.12.2017","4","15.0","2","F003"};
 				data.add(temp3);
+				break;
+			case 4:
+				//late
+				String[] temp4 = {"late","Tom", "Musterstudent","None","0.0","Muster-air","14:30","23.12.2017","4","15.0","2","F978"};
+				data.add(temp4);
+				break;
+			case 5:
+				//in time
+				String[] temp5 = {"intime","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.12.2017","200","15.0","2","G907"};
+				data.add(temp5);
 				break;
 		}
 		
@@ -97,7 +130,7 @@ public class MainFrameGUI extends JFrame {
 	}
 	
 	public int ret_TerminalCnt() {
-		return TerminalCnt;
+		return terminallist.size();
 	}
 	
 	public static void main(String[] args) {

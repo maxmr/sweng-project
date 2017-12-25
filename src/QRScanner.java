@@ -6,7 +6,7 @@ public class QRScanner {
 	String QRCode;
 	
 	public QRScanner(){
-	QRCode = "abcdefg";	
+	QRCode = "";	
 	}
 	
 	public void ScanQRCode() {
