@@ -92,6 +92,28 @@ public class MainFrameGUI extends JFrame {
 		}
 	}
 	
+	public void update_bonus(TerminalGUI t) {
+		String temp_bonus = t.userdata[4];
+		String familycode = t.userdata[3];
+		
+		for (int i=0; i < data.size();i++) {
+			String[] temp_data = data.get(i);
+			if(temp_data[3].contentEquals(familycode)) {
+				temp_data[4] = temp_bonus;
+			}
+		}
+		
+		for (int i=0; i < terminallist.size(); i++) {
+			TerminalGUI temp = terminallist.get(i);
+			if (temp.userdata[3].contentEquals(familycode)){
+				temp.userdata[4] = temp_bonus;	
+			}
+
+			temp.update_from_global();
+		}
+		
+	}
+	
 	private void create_example_data(int nr) {
 		switch(nr){
 			case 1:
@@ -114,8 +136,13 @@ public class MainFrameGUI extends JFrame {
 				break;
 			case 5:
 				//in time
-				String[] temp5 = {"intime","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.12.2017","200","15.0","2","G907"};
+				String[] temp5 = {"intime","Max", "Mustermann","F9","0.0","Muster-air","14:30","31.12.2017","200","12.0","2","G907"};
 				data.add(temp5);
+				break;
+			case 6:
+				//in time
+				String[] temp6 = {"intime2","Anna", "Mustermann","F9","0.0","Muster-air","14:30","31.12.2017","200","12.0","2","G907"};
+				data.add(temp6);
 				break;
 		}
 		

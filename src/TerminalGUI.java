@@ -16,6 +16,7 @@ public class TerminalGUI extends JDialog {
 	int ID;
 	MainFrameGUI Mainframe;
 	QRScanner scan;
+	Scale scale;
 	
 	String[] userdata = {"","","","","","","","","","","",""};
 	
@@ -35,7 +36,11 @@ public class TerminalGUI extends JDialog {
 	//Unkown Panel
 	private JLabel unkowntext;
 	private JLabel unkowntext2;
-	public JButton Exit_unkown;
+	
+	//Unkown Panel
+	private JLabel endtext;
+	private JLabel endtext2;
+
 	
 	//accepted Panel
 	
@@ -55,13 +60,20 @@ public class TerminalGUI extends JDialog {
 	private JLabel Vbonusweight;
 	private JLabel Vairline;
 	
+	public JButton Print_button;
+	public JButton Scale_button;
+	
+	public String printlabel;
+	public String printlabel_err;
+	public String printlabel_err2;
+	
 	
 	
 	
 	//early Panel
 	private JLabel earlytext;
 	private JLabel earlytext2;
-	public JButton Exit_early;
+
 	
 	//early Panel
 	private JLabel latetext;
@@ -86,6 +98,7 @@ public class TerminalGUI extends JDialog {
 		TerminalTitle = "Terminal " + ID;
 		state = State.WELCOME;
 		scan = new QRScanner();
+		scale = new Scale();
 		
 		lang = Language.eng;
 
@@ -144,7 +157,7 @@ public class TerminalGUI extends JDialog {
 		next_button = new JButton("Next");
 		next_button.setAlignmentX(Component.CENTER_ALIGNMENT);
 		next_button.setPreferredSize(new Dimension(300, 100));
-		next_button.addActionListener(new ButtonListTerminal(this));
+		next_button.addActionListener(new ButtonListTerminal(this,Mainframe));
 		next_button.setFont((new Font("Serif", Font.PLAIN, 40)));
 		
 		exit_button = new JButton("Exit");
@@ -168,6 +181,7 @@ public class TerminalGUI extends JDialog {
 		setTitle(TerminalTitle);
 		setResizable(false);
 		//setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		next_button.setEnabled(false);
 		update_panels();
 	}
 	
@@ -184,11 +198,14 @@ public class TerminalGUI extends JDialog {
 		switch(lang) {
 			case eng:
 				next_button.setText("next");
-				//exit_button.setText("back");
+				Scale_button.setText("scale");
+				Print_button.setText("print");
 				welcome.setText("Welcome");
 				scantext.setText("Please scan your boarding pass");
 				unkowntext.setText("ID not found");
 				unkowntext2.setText("Please contact the service");
+				endtext.setText("Check-In succeed");
+				endtext2.setText("Please enter the boarding zone");
 				earlytext.setText("Check-In not possible");
 				earlytext2.setText("Try again "+ userdata[8] + " hours before boarding");
 				latetext.setText("Check-In not possible");
@@ -198,21 +215,27 @@ public class TerminalGUI extends JDialog {
 				flugnr.setText("Flight Nr.: ");
 				Abflug.setText("Take off: ");
 				fdate.setText("Date: ");
-				Lluggage.setText("possible Lugagges: ");
-				lweight.setText("max. Weight: ");
+				Lluggage.setText("available Lugagges: ");
+				lweight.setText("available Weight: ");
 				lbonusweight.setText("extra Weight(family): ");
 				lairline.setText("Airline: ");
 				lname.setText("Welcome " + userdata[1] + " " + userdata[2]);
+				printlabel = "Please add the printed Label to your Luggage and then put it on the conveyor belt";
+				printlabel_err = "Too much weight. Please exit the Check-In and contact the service personal to complete the procedure";
+				printlabel_err2 = "Too much luggages. Please exit the Check-In and contact the service personal to complete the procedure";
 				
 				break;
 		
 			case ger:
 				next_button.setText("weiter");
-				//exit_button.setText("zurück");
+				Scale_button.setText("Waage");
+				Print_button.setText("drucken");
 				welcome.setText("Willkommen");
 				scantext.setText("Bitte scannen Sie Ihr Flugticket");
 				unkowntext.setText("ID nicht gefunden");
 				unkowntext2.setText("Bitte wenden Sie sich an das Service Personal");
+				endtext.setText("Check-In erfolgreich");
+				endtext2.setText("Bitte begeben Sie sich in den Abflugbereich");
 				earlytext.setText("Check-In nicht möglich");
 				earlytext2.setText("Versuchen Sie es noch einmal "+ userdata[8] + " Stunden vor Abflug");
 				latetext.setText("Check-In nicht möglich");
@@ -223,10 +246,13 @@ public class TerminalGUI extends JDialog {
 				Abflug.setText("Abflug: ");
 				fdate.setText("Datum: ");
 				Lluggage.setText("mögl. Gepäckstücke: ");
-				lweight.setText("max. Gewicht: ");
+				lweight.setText("verfügbares Gewicht: ");
 				lbonusweight.setText("extra Gewicht(Familie): ");
 				lairline.setText("Fluggesellschaft: ");
 				lname.setText("Willkommen " + userdata[1] + " " + userdata[2]);
+				printlabel = "Bitte bringen Sie das Label an Ihrem Koffer an und platzieren Ihn auf dem Förderband";
+				printlabel_err = "Zu viel Gewicht. Bitte beenden Sie den Check-In und wenden Sie sich an das Service Personald um den Vorgang abzuschließen";
+				printlabel_err2 = "Zu viele Gepäckstücke. Bitte beenden Sie den Check-In und wenden Sie sich an das Service Personald um den Vorgang abzuschließen";
 				break;
 		}
 		
@@ -361,13 +387,24 @@ public class TerminalGUI extends JDialog {
 		pan.add(middle);
 
 		JPanel lower = new JPanel();
-		Exit_unkown = new JButton("Exit");
-		Exit_unkown.setAlignmentX(Component.CENTER_ALIGNMENT);
-		Exit_unkown.setPreferredSize(new Dimension(300, 100));
-		Exit_unkown.setMaximumSize(new Dimension(300,100));
-		Exit_unkown.setFont((new Font("Serif", Font.PLAIN, 40)));
-		Exit_unkown.addActionListener(new ButtonListTerminal(this, Mainframe));
-		lower.add(Exit_unkown);
+		Scale_button = new JButton("scale");
+		Scale_button.setAlignmentX(Component.LEFT_ALIGNMENT);
+		Scale_button.setPreferredSize(new Dimension(300, 100));
+		Scale_button.setMaximumSize(new Dimension(300,100));
+		Scale_button.setFont((new Font("Serif", Font.PLAIN, 40)));
+		Scale_button.addActionListener(new ButtonListTerminal(this, scale,Mainframe));
+		lower.add(Scale_button);
+		
+		Print_button = new JButton("print");
+		Print_button.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		Print_button.setPreferredSize(new Dimension(300, 100));
+		Print_button.setMaximumSize(new Dimension(300,100));
+
+		Print_button.setFont((new Font("Serif", Font.PLAIN, 40)));
+		Print_button.addActionListener(new ButtonListTerminal(this, scale, Mainframe));
+		Print_button.setEnabled(false);
+		lower.add(Print_button);
+		
 		lower.setPreferredSize(new Dimension(1200,100));
 		pan.add(lower);
 		
@@ -394,14 +431,8 @@ public class TerminalGUI extends JDialog {
 		pan.add(middle);
 
 		JPanel lower = new JPanel();
-		Exit_early = new JButton("Exit");
-		Exit_early.setAlignmentX(Component.CENTER_ALIGNMENT);
-		Exit_early.setPreferredSize(new Dimension(300, 100));
-		Exit_early.setMaximumSize(new Dimension(300,100));
-		//scanqr.addActionListener(new ButtonListTerminal(this));
-		Exit_early.setFont((new Font("Serif", Font.PLAIN, 40)));
-		Exit_early.addActionListener(new ButtonListTerminal(this, Mainframe));
-		//lower.add(Exit_early);
+
+		//lower.add(Print_button);
 		lower.setPreferredSize(new Dimension(1200,100));
 		pan.add(lower);
 		
@@ -452,12 +483,28 @@ public class TerminalGUI extends JDialog {
 	}
 	//end Panel
 	private JPanel create_EndScreen() {
-		JPanel pan = new JPanel();
-		pan.setPreferredSize(new Dimension(1200,500));
-		JLabel label1 = new JLabel("Welcome");
-		pan.add(label1);
 		
-		return pan;
+		JPanel pan = new JPanel(new GridLayout(3, 1, 20, 20));
+		pan.setPreferredSize(new Dimension(1200,500));
+		JPanel upper = new JPanel();
+		endtext = new JLabel();
+		endtext.setFont(new Font("Serif", Font.BOLD, 40));
+		endtext.setAlignmentX(Component.CENTER_ALIGNMENT);
+		upper.add(endtext);
+		upper.setPreferredSize(new Dimension(1200,100));
+		pan.add(upper);
+		
+		JPanel middle = new JPanel();
+		endtext2 = new JLabel();
+		endtext2.setFont(new Font("Serif", Font.PLAIN, 20));
+		endtext2.setAlignmentX(Component.CENTER_ALIGNMENT);
+		middle.add(endtext2);
+		middle.setPreferredSize(new Dimension(1200,300));
+		pan.add(middle);
+
+
+		
+			return pan;
 	}
 	
 	public void setState(State s) {
@@ -477,21 +524,27 @@ public class TerminalGUI extends JDialog {
 				break;
 			case UNKOWN:
 				Actionpanel[1].setVisible(true);
+				next_button.setEnabled(false);
 				break;
 			case EARLY:
 				Actionpanel[2].setVisible(true);
+				next_button.setEnabled(false);
 				break;
 			case LATE:
 				Actionpanel[3].setVisible(true);
+				next_button.setEnabled(false);
 				break;
 			case ACCEPTED:
 				Actionpanel[4].setVisible(true);
+				exit_button.setEnabled(false);
 				break;
 			case LUGGAGE:
 				Actionpanel[5].setVisible(true);
 				break;
 			case END:
 				Actionpanel[6].setVisible(true);
+				exit_button.setEnabled(true);
+				next_button.setEnabled(false);
 				break;
 		}
 		TerminalTitle = "Terminal " + ID;

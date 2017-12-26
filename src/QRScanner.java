@@ -14,6 +14,9 @@ public class QRScanner {
 	}
 	
 	public String getQRCode() {
+		if(QRCode == null) {
+			QRCode = "";
+		}
 		return QRCode;
 	}
 
