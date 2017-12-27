@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-
-
 public class add_admindata extends JFrame {
 	private Container c;
 	public JButton button_cancel;
@@ -16,35 +14,26 @@ public class add_admindata extends JFrame {
 
 	MainFrameGUI mainframe;
 	AdminGUI admingui;
-	
-	
+		
 	public add_admindata(MainFrameGUI m, AdminGUI a) {
 		
 	mainframe = m;
 	admingui = a;
-	
-	
+		
 	c = getContentPane();
-	
-	
+		
 	//panel für oberen Bereich bzw. ersten 3 Elemente im Gridlayout
 	JPanel upper_panel = new JPanel(new GridLayout(3,1));
 	upper_panel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 	
 	//Label
 	upper_panel.add(new JLabel("Add Data"));
-	
-
-	
-
-	
+		
 	//Panel für Liste, Boarderlayout für automatische Breite UND Höhe
 	JPanel middle_panel = new JPanel(new GridLayout(12, 2));
 	
 	labels = new JLabel[12];
 	textfield = new JTextField[12];
-	
-	
 	
 	for (int i=0; i < 12; i++) {
 		labels[i] = new JLabel();
@@ -53,9 +42,7 @@ public class add_admindata extends JFrame {
 		middle_panel.add(textfield[i]);
 	}
 	middle_panel.setBorder(BorderFactory.createEmptyBorder(10, 50, 10, 50));
-	
-
-	
+		
 	labels[0].setText("QR-Code: ");
 	labels[1].setText("Name: ");
 	labels[2].setText("Vorname: ");
@@ -67,19 +54,13 @@ public class add_admindata extends JFrame {
 	labels[8].setText("CheckIn mögl. in std: ");
 	labels[9].setText("Maximalgewicht: in kg ");
 	labels[10].setText("Anzahl Koffer: ");
-	labels[11].setText("FlugNr: ");
-
-			
-
-	
+	labels[11].setText("FlugNr: ");	
 	
 	//buttons
 	JPanel pa[];		// eigenes panel pro button
 	JPanel bottom_panel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 	
-	pa = new JPanel[2];
-	
-	
+	pa = new JPanel[2];	
 
 	button_add = new JButton("add");
 	button_add.addActionListener(new ButtonListadmin());
@@ -87,8 +68,6 @@ public class add_admindata extends JFrame {
 	button_cancel = new JButton("del");		
 	button_cancel.addActionListener(new ButtonListadmin());
 	button_cancel.setEnabled(true);
-
-	
 
 		pa[0] = new JPanel();
 		pa[0].add(button_add);
@@ -98,11 +77,6 @@ public class add_admindata extends JFrame {
 		pa[1].add(button_cancel);
 		pa[1].setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 		bottom_panel.add(pa[1]);
-
-	
-	
-
-	
 	
 	c.add(upper_panel,BorderLayout.NORTH);
 	c.add(middle_panel, BorderLayout.CENTER);
@@ -116,9 +90,6 @@ public class add_admindata extends JFrame {
 	setMinimumSize(new Dimension(450, 200));
 		
 }
-
-
-
 
 public class ButtonListadmin implements ActionListener {
 
@@ -153,18 +124,13 @@ public class ButtonListadmin implements ActionListener {
 			mainframe.data.add(temp);
 			admingui.sync_list_data();
 			dispose();
-			 
-			 
+			 			 
 			//
 		}
 		else if(arg0.getSource() == button_cancel) {
 			dispose();
 		}
-
 	}
 
-
-
-}
-	
+}	
 }

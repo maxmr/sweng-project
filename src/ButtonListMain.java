@@ -13,8 +13,6 @@ public class ButtonListMain implements ActionListener {
 		frame = f;
 	}
 	
-
-	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == frame.MainButtons[0]) {
@@ -23,8 +21,6 @@ public class ButtonListMain implements ActionListener {
 		}
 		else if(arg0.getSource() == frame.MainButtons[1]) {
 			   new TerminalGUI(frame.ret_TerminalCnt(), frame).setVisible(true);
-			//frame.increase_TerminalCnt();
-			
 		}
 		else if(arg0.getSource() == frame.MainButtons[2]) {
 			System.exit(0);
@@ -35,7 +31,5 @@ public class ButtonListMain implements ActionListener {
 		else if(arg0.getSource() == a.button_del) {
 			a.del_element();
 		}
-
 	}
-
 }

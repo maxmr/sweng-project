@@ -21,7 +21,7 @@ public class MainFrameGUI extends JFrame {
 	//List 8: Frühester CheckIN t-time
 	//List 9: Maximalgewicht pro Koffer
 	//List 10: Maximale KofferAnzahl
-	//List 11: Flugnr
+	//1List 11: Flugnr
 	
 	private Container C;
 	public JButton[] MainButtons;
@@ -56,9 +56,7 @@ public class MainFrameGUI extends JFrame {
 		MainPanel =  new JPanel(new GridLayout(MainButtons.length, 0));
 		Border border_panel = BorderFactory.createEmptyBorder(40, 40, 40, 40);
 		MainPanel.setBorder(border_panel);
-		
-		
-		//MainContainer.setLayout(new GridLayout(MainButtons.length, 0));
+
 		MainPanel.add(MainButtons[0]);
 		MainPanel.add(MainButtons[1]);
 		MainPanel.add(MainButtons[2]);		
@@ -70,13 +68,8 @@ public class MainFrameGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);			
 	}
 	
-	public void  increase_TerminalCnt() {
-		TerminalCnt ++;
-	}
-	
 	public void add_terminalref( TerminalGUI t) {
-		terminallist.add(t);
-		
+		terminallist.add(t);	
 	}
 	
 	public void del_terminalref( TerminalGUI t) {
@@ -108,10 +101,8 @@ public class MainFrameGUI extends JFrame {
 			if (temp.userdata[3].contentEquals(familycode)){
 				temp.userdata[4] = temp_bonus;	
 			}
-
 			temp.update_from_global();
 		}
-		
 	}
 	
 	private void create_example_data(int nr) {
@@ -144,18 +135,9 @@ public class MainFrameGUI extends JFrame {
 				String[] temp6 = {"intime2","Anna", "Mustermann","F9","0.0","Muster-air","14:30","31.12.2017","200","12.0","2","G907"};
 				data.add(temp6);
 				break;
-		}
-		
-		
-		
+		}	
 	}
-	
-	
-	public void decrease_TerminalCnt() {
-		if (TerminalCnt > 0)
-			TerminalCnt --;
-	}
-	
+		
 	public int ret_TerminalCnt() {
 		return terminallist.size();
 	}
@@ -168,11 +150,8 @@ public class MainFrameGUI extends JFrame {
 			public void run() {
 				// TODO Auto-generated method stub
 				JFrame frame1 = new MainFrameGUI();
-				frame1.setVisible(true);
-				
+				frame1.setVisible(true);				
 			}
 		});
-
 	}
-
 }

@@ -45,13 +45,13 @@ public class ButtonListTerminal implements ActionListener {
 
 		}
 		else if(arg0.getSource() == frame.next_button) {
-			System.out.println(frame.scan.getQRCode());
+			//System.out.println(frame.scan.getQRCode());
 			this.state = frame.state;
 			switch(state) {
 			case WELCOME:
 				if(!frame.check_QRcode()) {
 					nextstate = TerminalGUI.State.UNKOWN;
-					System.out.println("ich bin unbekannt");
+					//System.out.println("ich bin unbekannt");
 				}
 				else if(frame.check_late()) {
 					nextstate = TerminalGUI.State.LATE;					
@@ -59,27 +59,21 @@ public class ButtonListTerminal implements ActionListener {
 				else if (frame.check_early()) {
 					nextstate = TerminalGUI.State.EARLY;
 				}
-				else
-				{
+				else{
 					nextstate = TerminalGUI.State.ACCEPTED;
 					if(Long.parseLong(frame.userdata[10]) > 0) {
 						frame.Scale_button.setEnabled(true);
 						}
-						else
-						{
+						else	{
 							frame.Scale_button.setEnabled(true);
 						}
-				}
-				
+				}			
 				break;
 			case UNKOWN:
-
 				break;
 			case EARLY:
-
 				break;
 			case LATE:
-
 				break;
 			case ACCEPTED:
 				nextstate = TerminalGUI.State.END;
@@ -91,19 +85,14 @@ public class ButtonListTerminal implements ActionListener {
 					frame.userdata[4] = Float.toString(bonus);
 					mainframe.update_bonus(frame);
 				}
-
 				break;
 			case LUGGAGE:
-
 				break;
 			case END:
-
-				break;
-				
+				break;			
 			}
 			frame.setState(nextstate);
 			frame.update_panels();
-
 		}
 		else if(arg0.getSource() == frame.lang_buttons[0]) {
 			lang = TerminalGUI.Language.eng;
@@ -131,17 +120,13 @@ public class ButtonListTerminal implements ActionListener {
 			}
 				
 		}
-		else if (arg0.getSource() == frame.Print_button) {
-			
-			
-			
+		else if (arg0.getSource() == frame.Print_button) {	
 			float weigth = Float.parseFloat(frame.userdata[9]);
 			float bonus = Float.parseFloat(frame.userdata[4]);
 			float temp = weigth;
 			
 			long lug_cnt = Long.parseLong(frame.userdata[10]);
-			lug_cnt--;
-			
+			lug_cnt--;		
 			
 			float luggage = Float.parseFloat(scale.getWeight());
 			
@@ -174,19 +159,12 @@ public class ButtonListTerminal implements ActionListener {
 				else {
 					frame.userdata[9] = Float.toString(weigth);
 				}
-			frame.userdata[10] = Long.toString(lug_cnt);
-			mainframe.update_bonus(frame);			
-			frame.Print_button.setEnabled(false);
-			
-			
-			
-			System.out.println(scale.getWeight());		
-
+				frame.userdata[10] = Long.toString(lug_cnt);
+				mainframe.update_bonus(frame);			
+				frame.Print_button.setEnabled(false);	
+				//System.out.println(scale.getWeight());		
+				}
 		}
 
-
-
 	}
-
-}
 }

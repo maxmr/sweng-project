@@ -141,23 +141,16 @@ public void get_data() {
 		
 public class Listlistener implements ListSelectionListener {
 	
-	
-	
-
-
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 
 		if(list.isSelectionEmpty() == true)
 			//deaktivieren
-			button_del.setEnabled(false);
-			
+			button_del.setEnabled(false);			
 		else
 			//aktivieren
 			button_del.setEnabled(true);
-
 	}
-
 }
 
 public class ButtonListadmin implements ActionListener {
@@ -177,9 +170,6 @@ public class ButtonListadmin implements ActionListener {
 		else if(arg0.getSource() == button_del) {
 			del_element();
 		}
-
 	}
-
-}
-	
+}	
 }

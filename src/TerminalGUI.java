@@ -40,10 +40,8 @@ public class TerminalGUI extends JDialog {
 	//Unkown Panel
 	private JLabel endtext;
 	private JLabel endtext2;
-
 	
-	//accepted Panel
-	
+	//accepted Panel	
 	private JLabel lname;
 	private JLabel flugnr;
 	private JLabel Abflug;
@@ -66,15 +64,11 @@ public class TerminalGUI extends JDialog {
 	public String printlabel;
 	public String printlabel_err;
 	public String printlabel_err2;
-	
-	
-	
-	
+		
 	//early Panel
 	private JLabel earlytext;
 	private JLabel earlytext2;
 
-	
 	//early Panel
 	private JLabel latetext;
 	private JLabel latetext2;
@@ -88,8 +82,7 @@ public class TerminalGUI extends JDialog {
 	public enum Language {eng,ger};
 	private Language lang;
 	public State state;
-	
-	
+		
 	public TerminalGUI(int TerminalID, MainFrameGUI f) {
 		Mainframe = f;
 		Mainframe.add_terminalref(this);
@@ -108,13 +101,10 @@ public class TerminalGUI extends JDialog {
 		lang_buttons[0] = new JButton(icon_eng);		
 		ImageIcon icon_ger = new ImageIcon(new ImageIcon("src/german.jpg").getImage().getScaledInstance(150, 100, Image.SCALE_DEFAULT));
 		lang_buttons[1] = new JButton(icon_ger);
-		
-
-		
+			
 		upper_panel = new JPanel();
 		upper_panel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-
-		
+	
 		for (int i=0; i < lang_buttons.length; i++) {
 			lang_buttons[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
 			lang_buttons[i].setPreferredSize(new Dimension(150, 100));
@@ -127,8 +117,7 @@ public class TerminalGUI extends JDialog {
 		
 		upper_panel.setPreferredSize(new Dimension(1200, 120));
 		upper_panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		
-		
+			
 		Actionpanel = new JPanel[7];
 		Actionpanel[0] = create_WelcomeScreen();
 		Actionpanel[1] = create_UnkownScreen();
@@ -137,8 +126,6 @@ public class TerminalGUI extends JDialog {
 		Actionpanel[4] = create_AcceptedScreen();
 		Actionpanel[5] = create_LuggageScreen();
 		Actionpanel[6] = create_EndScreen();
-
-		
 		
 		// ------- Center Panel ---------- //
 		center_panel = new JPanel();
@@ -146,8 +133,6 @@ public class TerminalGUI extends JDialog {
 		center_panel.add(Actionpanel[i],BorderLayout.CENTER);	
 		}
 		
-		
-	
 		center_panel.setBorder(BorderFactory.createEtchedBorder());
 		center_panel.setPreferredSize(new Dimension(1200, 500));
 		
@@ -210,8 +195,7 @@ public class TerminalGUI extends JDialog {
 				earlytext2.setText("Try again "+ userdata[8] + " hours before boarding");
 				latetext.setText("Check-In not possible");
 				latetext2.setText("Your flight has already taken off");
-				ID_str.setText("ID: " + scan.getQRCode());
-				
+				ID_str.setText("ID: " + scan.getQRCode());		
 				flugnr.setText("Flight Nr.: ");
 				Abflug.setText("Take off: ");
 				fdate.setText("Date: ");
@@ -222,8 +206,7 @@ public class TerminalGUI extends JDialog {
 				lname.setText("Welcome " + userdata[1] + " " + userdata[2]);
 				printlabel = "Please add the printed Label to your Luggage and then put it on the conveyor belt";
 				printlabel_err = "Too much weight. Please exit the Check-In and contact the service personal to complete the procedure";
-				printlabel_err2 = "Too much luggages. Please exit the Check-In and contact the service personal to complete the procedure";
-				
+				printlabel_err2 = "Too much luggages. Please exit the Check-In and contact the service personal to complete the procedure";			
 				break;
 		
 			case ger:
@@ -240,8 +223,7 @@ public class TerminalGUI extends JDialog {
 				earlytext2.setText("Versuchen Sie es noch einmal "+ userdata[8] + " Stunden vor Abflug");
 				latetext.setText("Check-In nicht möglich");
 				latetext2.setText("Der Flug ist bereits gestartet");
-				ID_str.setText("ID: " + scan.getQRCode());
-				
+				ID_str.setText("ID: " + scan.getQRCode());			
 				flugnr.setText("Flug Nr.: ");
 				Abflug.setText("Abflug: ");
 				fdate.setText("Datum: ");
@@ -262,8 +244,7 @@ public class TerminalGUI extends JDialog {
 		Vluggage.setText(userdata[10]);
 		Vweight.setText(userdata[9] + " kg");
 		Vbonusweight.setText(userdata[4] + " kg");
-		Vairline.setText(userdata[5]);
-		
+		Vairline.setText(userdata[5]);	
 	}
 	
 	//Welcome Panel
@@ -304,8 +285,7 @@ public class TerminalGUI extends JDialog {
 		ID_str.setAlignmentX(Component.CENTER_ALIGNMENT);
 		lower2.add(ID_str);
 		lower2.setPreferredSize(new Dimension(1200,100));
-		pan.add(lower);
-		
+		pan.add(lower);	
 		pan.add(lower2);
 		
 		return pan;
@@ -329,9 +309,7 @@ public class TerminalGUI extends JDialog {
 		middle.add(unkowntext2);
 		middle.setPreferredSize(new Dimension(1200,300));
 		pan.add(middle);
-
-
-		
+	
 		return pan;
 	}
 	//Accepted Panel
@@ -363,11 +341,7 @@ public class TerminalGUI extends JDialog {
 		Vbonusweight = new JLabel();
 		lairline = new JLabel();
 		Vairline = new JLabel();
-		
-//		scantext = new JLabel("Please scan your boarding pass");
-//		scantext.setFont(new Font("Serif", Font.PLAIN, 20));
-//		scantext.setAlignmentX(Component.CENTER_ALIGNMENT);
-		
+			
 		middle.add(flugnr);
 		middle.add(Vflugnr);
 		middle.add(lairline);
@@ -399,12 +373,10 @@ public class TerminalGUI extends JDialog {
 		Print_button.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		Print_button.setPreferredSize(new Dimension(300, 100));
 		Print_button.setMaximumSize(new Dimension(300,100));
-
 		Print_button.setFont((new Font("Serif", Font.PLAIN, 40)));
 		Print_button.addActionListener(new ButtonListTerminal(this, scale, Mainframe));
 		Print_button.setEnabled(false);
-		lower.add(Print_button);
-		
+		lower.add(Print_button);		
 		lower.setPreferredSize(new Dimension(1200,100));
 		pan.add(lower);
 		
@@ -429,10 +401,7 @@ public class TerminalGUI extends JDialog {
 		middle.add(earlytext2);
 		middle.setPreferredSize(new Dimension(1200,300));
 		pan.add(middle);
-
 		JPanel lower = new JPanel();
-
-		//lower.add(Print_button);
 		lower.setPreferredSize(new Dimension(1200,100));
 		pan.add(lower);
 		
@@ -501,22 +470,17 @@ public class TerminalGUI extends JDialog {
 		middle.add(endtext2);
 		middle.setPreferredSize(new Dimension(1200,300));
 		pan.add(middle);
-
-
-		
 			return pan;
 	}
 	
 	public void setState(State s) {
 		state = s;
-		System.out.println(state);
+		//System.out.println(state);
 	}
-	
 	
 	public void update_panels() {
 		for (int i =0; i < Actionpanel.length; i++) {
-			Actionpanel[i].setVisible(false);
-			
+			Actionpanel[i].setVisible(false);		
 		}
 		switch(state) {
 			case WELCOME:
@@ -549,8 +513,7 @@ public class TerminalGUI extends JDialog {
 		}
 		TerminalTitle = "Terminal " + ID;
 		setTitle(TerminalTitle);
-		switch_lang();
-		
+		switch_lang();		
 	}
 	
 	public boolean check_QRcode() {
@@ -565,8 +528,7 @@ public class TerminalGUI extends JDialog {
 				ret = true;
 				break;
 			}
-		}
-		
+		}		
 		return ret;
 	}
 	
@@ -584,9 +546,8 @@ public class TerminalGUI extends JDialog {
 			ret = true;
 		}
 		
-		System.out.println(flight);
-		System.out.println(now);
-		
+		////System.out.println(flight);
+		////System.out.println(now);		
 		return ret;
 	}
 	
@@ -604,8 +565,7 @@ public class TerminalGUI extends JDialog {
 		
 		if(now.isBefore(flight_CheckIn)) {
 			ret = true;
-		}
-		
+		}	
 		return ret;
 	}
 
@@ -621,14 +581,5 @@ public class TerminalGUI extends JDialog {
 			Mainframe.del_terminalref(terminalref);
 			e.getWindow().dispose();
 		}
-	}
-	
-	
-	public static void main(String[] args) {
-	//	new TerminalGUI(0).setVisible(true);
-
-	}
-
-
-	
+	}	
 }
