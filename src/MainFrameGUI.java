@@ -21,7 +21,7 @@ public class MainFrameGUI extends JFrame {
 	//List 8: Frühester CheckIN t-time
 	//List 9: Maximalgewicht pro Koffer
 	//List 10: Maximale KofferAnzahl
-	//1List 11: Flugnr
+	//List 11: Flugnr
 	
 	private Container C;
 	public JButton[] MainButtons;
