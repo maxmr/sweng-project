@@ -132,7 +132,7 @@ public class MainFrameGUI extends JFrame {
 				break;
 			case 6:
 				//in time
-				String[] temp6 = {"intime2","Anna", "Mustermann","F9","0.0","Muster-air","14:30","31.12.2017","500","12.0","2","G907"};
+				String[] temp6 = {"intime2","Anna", "Mustermann","F9","0.0","Muster-air","14:30","16.01.2018","500","12.0","2","G907"};
 				data.add(temp6);
 				break;
 		}	
