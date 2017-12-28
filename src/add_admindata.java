@@ -44,8 +44,8 @@ public class add_admindata extends JFrame {
 	middle_panel.setBorder(BorderFactory.createEmptyBorder(10, 50, 10, 50));
 		
 	labels[0].setText("QR-Code: ");
-	labels[1].setText("Name: ");
-	labels[2].setText("Vorname: ");
+	labels[1].setText("Vorname: ");
+	labels[2].setText("Name: ");
 	labels[3].setText("FamilienID: ");
 	labels[4].setText("FamilienBonus in kg: ");
 	labels[5].setText("Fluggesellschaft: ");
