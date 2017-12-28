@@ -11,8 +11,8 @@ public class MainFrameGUI extends JFrame {
 	ArrayList<String[]> data; 
 	
 	//List 0: QR-Code
-	//List 1: Name
-	//List 2: Vorname
+	//List 1: VorName
+	//List 2: name
 	//List 3: Familien-ID
 	//List 4: Familen Bonus-Gewicht
 	//List 5: Fluggesellschaft
@@ -108,16 +108,16 @@ public class MainFrameGUI extends JFrame {
 	private void create_example_data(int nr) {
 		switch(nr){
 			case 1:
-				String[] temp = {"12345678abcdefg","Max", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3","F001"};
+				String[] temp = {"12345678abcdefg","Max", "Mustermann","F517","0.0","Muster-air","13:30","15.01.2018","5","20.0","3","F001"};
 				data.add(temp);
 				break;
 			case 2:
-				String[] temp2 = {"23456789bcdefgh","Anna", "Mustermann","F517","0.0","Muster-air","17:30","30.12.2017","2","20.0","3","F001"};
-				data.add(temp2);
+				String[] temp2 = {"23456789bcdefgh","Anna", "Mustermann","F514","0.0","Muster-air","17:30","30.12.2017","2","20.0","3","F002"};
+				//data.add(temp2);
 				break;
 			case 3:
 				//early
-				String[] temp3 = {"early","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.12.2017","4","15.0","2","F003"};
+				String[] temp3 = {"early","Tom", "Musterstudent","None","0.0","Muster-air","14:30","31.01.2018","4","5.0","2","F003"};
 				data.add(temp3);
 				break; 
 			case 4:
@@ -127,12 +127,12 @@ public class MainFrameGUI extends JFrame {
 				break;
 			case 5:
 				//in time
-				String[] temp5 = {"intime","Max", "Mustermann","F9","0.0","Muster-air","14:30","31.12.2017","200","12.0","2","G907"};
+				String[] temp5 = {"intime","Max", "Mustermann","F9","0.0","Muster-air","14:30","16.01.2018","500","12.0","2","G907"};
 				data.add(temp5);
 				break;
 			case 6:
 				//in time
-				String[] temp6 = {"intime2","Anna", "Mustermann","F9","0.0","Muster-air","14:30","31.12.2017","200","12.0","2","G907"};
+				String[] temp6 = {"intime2","Anna", "Mustermann","F9","0.0","Muster-air","14:30","31.12.2017","500","12.0","2","G907"};
 				data.add(temp6);
 				break;
 		}	
