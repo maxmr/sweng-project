@@ -65,7 +65,7 @@ public class add_admindata extends JFrame {
 	button_add = new JButton("add");
 	button_add.addActionListener(new ButtonListadmin());
 	button_add.setEnabled(true);
-	button_cancel = new JButton("del");		
+	button_cancel = new JButton("cancel");		
 	button_cancel.addActionListener(new ButtonListadmin());
 	button_cancel.setEnabled(true);
 
